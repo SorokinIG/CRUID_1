@@ -1,0 +1,80 @@
+﻿@model MainViewModel
+@{
+    ViewData["Title"] = "Главная страница";
+}
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+    
+        <div class="name_page" style="text-align:center">
+            <h1>Главная странциа</h1>
+        </div>
+        <div class="update_filter">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+              
+            <table>
+                <tr>
+                    <td>
+                        <label>От:</label>                     
+                            <input class="form-control" asp-for="Date_Start" asp-format="{0:yyyy-MM-ddTHH:mm}"/>                       
+                    </td>
+                        <td>
+                            <label>До:</label> 
+                            <input class="form-control" asp-for="Date_End" asp-format="{0:yyyy-MM-ddTHH:mm}"/>
+                        </td>
+                        <td>                              
+                            <select asp-items="Model.Providers" multiple asp-for="SelectedValues"></select>
+                        </td>
+                        <td>
+                            <input type="submit" value="Применить" />  
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
+       
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td 
+                            >Заказы
+                        </td>
+                         <td >
+                            @Html.ActionLink("Добавить заказ","Create","EditForm") 
+                            </td>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model.Orders)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Number)                                
+                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProviderId)                               
+                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)                                
+                                </td>
+                               <td>
+                                   <a asp-action="Index" asp-controller="ViewForm" asp-route-id="@item.Id">Подробнее</a> 
+                                 </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+
+       
+   
+</body>
+</html>
+

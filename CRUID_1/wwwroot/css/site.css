@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: silver;
+}
+tr {
+    display: flex;
+   
+}
+td {
+    width: 100%;
+    text-align: center;
+}
+table {
+    margin: 0 auto;
+}
